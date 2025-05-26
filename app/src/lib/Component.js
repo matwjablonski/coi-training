@@ -16,8 +16,6 @@ export class Component {
 
   injectServices(services) {
     this.services = services;
-
-    this.afterServicesInjected?.();
   }
 
   subscribeStore(keyInStore, keyInComponent = keyInStore, defaultValue = []) {
