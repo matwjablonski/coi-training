@@ -30,34 +30,45 @@ export class AddTodo extends Component {
           ['Dodaj nowe zadanie']
         ),
         this.createElement(
-          'input',
+          'form',
           {
-            class: 'input mb-4',
-            type: 'text',
-            placeholder: 'Wpisz tytuł zadania',
-            name: 'task',
-            onChange: this.handleFormChange,
-          },
-        ),
-        this.createElement(
-          'textarea',
-          {
-            class: 'textarea mb-4',
-            placeholder: 'Wpisz opis zadania',
-            name: 'description',
-            onChange: this.handleFormChange,
-          },
-        ),
-        this.createElement(
-          'button',
-          {
-            class: 'button is-primary is-fullwidth',
-            onClick: () => {
+            onSubmit: (e) => {
+              e.preventDefault();
               // @TODO: Add validation
               this.services.TodosService.addTodo({ ...this.form })
             }
           },
-          ['Dodaj zadanie']
+          [
+            this.createElement(
+              'input',
+              {
+                class: 'input mb-4',
+                type: 'text',
+                placeholder: 'Wpisz tytuł zadania',
+                name: 'task',
+                required: true,
+                onChange: this.handleFormChange,
+              },
+            ),
+            this.createElement(
+              'textarea',
+              {
+                class: 'textarea mb-4',
+                placeholder: 'Wpisz opis zadania',
+                name: 'description',
+                required: true,
+                onChange: this.handleFormChange,
+              },
+            ),
+            this.createElement(
+              'button',
+              {
+                class: 'button is-primary is-fullwidth',
+                type: 'submit',
+              },
+              ['Dodaj zadanie']
+            )
+          ]
         )
       ]
     )
